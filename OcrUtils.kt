@@ -45,7 +45,7 @@ providing proper format do not comment.
         values: MutableList<String>,
         fields: List<String>,
         query: String,
-        onSuccess: (Map<String,String>) -> Unit,
+        onSuccess: (Map<String, String>) -> Unit,
         onError: (errorMsg: String) -> Unit
     ) {
         val base64Image = fileToBase64String(file)
@@ -67,7 +67,8 @@ providing proper format do not comment.
         val dialog = DialogUtils.showLoading(context, "Loading...")
         dialog.show()
         val dataRepository = DataRepositoryImpl()
-        dataRepository.getGeminiResult(context, request, CommonUtils.geminiToken,
+        dataRepository.getGeminiResult(
+            context, request, CommonUtils.geminiToken,
             onSuccess = { response ->
                 try {
                     // Extract JSON string from the response

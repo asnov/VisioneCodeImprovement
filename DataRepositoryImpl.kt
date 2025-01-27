@@ -28,8 +28,11 @@ class DataRepositoryImpl : DataRepository {
         // Add the API key as a query parameter
         val call = apiService.generateContent(apiKey, geminiRequest)
         call.enqueue(object : Callback<GeminiResponse> {
-            override fun onResponse(call: Call<GeminiResponse>, response:
-            Response<GeminiResponse>) {
+
+            override fun onResponse(
+                call: Call<GeminiResponse>, response:
+                Response<GeminiResponse>
+            ) {
                 if (response.isSuccessful) {
                     val geminiResponse = response.body()
                     geminiResponse?.let {
@@ -40,9 +43,10 @@ class DataRepositoryImpl : DataRepository {
                     onError(Throwable("Error: ${response.code()} - ${response.message()}"))
                 }
             }
-        }
-                override fun onFailure(call: Call<GeminiResponse>, t: Throwable) {
-            onError(t)
+
+            override fun onFailure(call: Call<GeminiResponse>, t: Throwable) {
+                onError(t)
+            }
         })
     }
 
