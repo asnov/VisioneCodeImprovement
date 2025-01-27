@@ -1,4 +1,4 @@
-## Alex Novikov (alex@lpdev.pro)
+## Alex Novikov (e-mail: alex arroba lpdev punto pro, tg: [anovi](https://t.me/anovi))
 
 Comfort level on a scale 1 to 10:
 1) Native Android development - 9
