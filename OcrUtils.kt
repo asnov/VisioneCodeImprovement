@@ -49,6 +49,7 @@ providing proper format do not comment.
         onError: (errorMsg: String) -> Unit
     ) {
         val base64Image = fileToBase64String(file)
+        if (base64Image.isEmpty()) onError("Failed to convert image to base64.")
         val request = GeminiRequest(
             contents = listOf(
                 Content(
@@ -98,7 +99,9 @@ providing proper format do not comment.
             },
             onError = { errorMsg ->
                 dialog.dismiss()
-                onError(errorMsg.message.orEmpty())
+                onError(
+                    errorMsg.message?.takeIf { it.isNotBlank() }
+                        ?: "unspecified error during API call.")
             }
         )
     }

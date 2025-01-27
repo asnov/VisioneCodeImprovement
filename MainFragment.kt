@@ -23,7 +23,7 @@ val fields = listOf(
 
 /**********************************************/
 
-fun MainFragment.callGemini(onSuccess: () -> Unit, onError: () -> Unit) {
+fun MainFragment.callGemini(onSuccess: () -> Unit, onError: (err: String) -> Unit) {
     var query = OcrUtils.generateStructuredDataStringGemini(fields)
     OcrUtils.fetchOcrDataUsingGemini(
         requireContext(),
@@ -36,9 +36,10 @@ fun MainFragment.callGemini(onSuccess: () -> Unit, onError: () -> Unit) {
         query,
         onSuccess = { map ->
             processCustomFields(map)
+            onSuccess()
         },
         onError = { error ->
-            onError()
+            onError(error)
         })
 }
 
